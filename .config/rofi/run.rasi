@@ -1,0 +1,18 @@
+@import "shared.rasi"
+
+configuration {
+    display-run: "Run:";
+    show-icons:  false;
+}
+
+window {
+    width: 480px;
+}
+
+listview {
+    lines: 5;
+}
+
+element {
+    padding: 6px 12px;
+}

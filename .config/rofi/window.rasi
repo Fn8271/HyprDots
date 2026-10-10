@@ -1,0 +1,30 @@
+@import "shared.rasi"
+
+configuration {
+    display-window: "Window:";
+    window-format:  "{c}  {t}";
+}
+
+window {
+    width: 720px;
+}
+
+element normal.urgent,
+element alternate.urgent {
+    text-color: @red;
+}
+
+element normal.active,
+element alternate.active {
+    text-color: @green;
+}
+
+element selected.active {
+    background-color: @bg-sel;
+    text-color:       @fg;
+}
+
+element selected.urgent {
+    background-color: @red;
+    text-color:       @bg;
+}

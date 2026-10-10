@@ -1,0 +1,6 @@
+@import "shared.rasi"
+
+configuration {
+    display-drun:        "Search:";
+    drun-display-format: "{name}";
+}

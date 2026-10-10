@@ -1,0 +1,104 @@
+configuration {
+    font:            "IosevkaTerm Nerd Font Bold 11";
+    show-icons:      true;
+    icon-theme:      "Papirus";
+    disable-history: true;
+}
+
+* {
+    bg:           #131313;
+    bg-alt:       #1e1e1e;
+    bg-sel:       #2f2f2f;
+    gray:         #444444;
+    muted:        #6e6e70;
+    fg-alt:       #d2d2d4;
+    fg:           #f2f2f4;
+
+    red:          #ff6565;
+    green:        #2cc46c;
+
+    accent:       @fg-alt;
+    border-col:   @gray;
+
+    background-color: transparent;
+    text-color:       @fg;
+}
+
+window {
+    location:         center;
+    width:            600px;
+    background-color: @bg;
+    border:           3px;
+    border-color:     @border-col;
+    border-radius:    12px;
+}
+
+mainbox {
+    children: [ inputbar, listview ];
+    spacing:  12px;
+    padding:  16px;
+}
+
+inputbar {
+    children:         [ prompt, entry ];
+    spacing:          10px;
+    padding:          10px 14px;
+    background-color: @bg-alt;
+    border-radius:    8px;
+}
+
+prompt {
+    text-color: @accent;
+}
+
+entry {
+    placeholder:       "";
+    placeholder-color: @muted;
+    cursor:            text;
+    blink:             false;
+    cursor-width:      8px;
+    cursor-color:      @fg-alt;
+}
+
+listview {
+    lines:     6;
+    columns:   1;
+    spacing:   4px;
+    cycle:     true;
+    dynamic:   true;
+    scrollbar: false;
+}
+
+element {
+    orientation:   horizontal;
+    spacing:       12px;
+    padding:       8px 12px;
+    border-radius: 8px;
+    text-color:    @fg-alt;
+}
+
+element-icon {
+    size:   24px;
+    cursor: inherit;
+}
+
+element-text {
+    vertical-align: 0.5;
+    text-color:     inherit;
+    cursor:         inherit;
+}
+
+element selected.normal {
+    background-color: @bg-sel;
+    text-color:       @fg;
+}
+
+message {
+    padding:          10px 14px;
+    background-color: @bg-alt;
+    border-radius:    8px;
+}
+
+textbox {
+    text-color: @fg-alt;
+}
