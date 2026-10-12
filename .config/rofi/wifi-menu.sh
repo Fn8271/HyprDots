@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Rofi menu to manage Wi-Fi with NetworkManager (nmcli)
 
-ICON_LOCK="ICON"
+ICON_LOCK=""
 THEME="$HOME/.config/rofi/menu.rasi"
 WIDTH='window { width: 300px; }'
 MAX_LINES=10
