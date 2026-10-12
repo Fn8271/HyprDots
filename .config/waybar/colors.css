@@ -1,0 +1,13 @@
+/* Grayscale base */
+@define-color bg      #131313;
+@define-color bg-alt  #1e1e1e;
+@define-color bg-sel  #2f2f2f;
+@define-color gray    #444444;
+@define-color muted   #6e6e70;
+@define-color fg-alt  #d2d2d4;
+@define-color fg      #f2f2f4;
+
+/* States */
+@define-color red     #ff6565;
+@define-color yellow  #ecc46f;
+@define-color green   #2cc46c;

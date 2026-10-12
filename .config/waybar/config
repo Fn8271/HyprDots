@@ -1,0 +1,202 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 44,
+  "reload_style_on_change": true,
+
+  "modules-left": ["hyprland/workspaces", "hyprland/window"],
+  "modules-center": ["custom/media"],
+  "modules-right": ["group/hardware", "group/net", "group/controls", "tray", "custom/weather", "clock"],
+
+  "group/hardware": {
+    "orientation": "horizontal",
+    "modules": ["cpu", "custom/temps", "custom/memory"]
+  },
+
+  "group/net": {
+    "orientation": "horizontal",
+    "modules": ["network#eth", "network#wifi", "custom/vpn", "custom/firewall"]
+  },
+
+  "group/controls": {
+    "orientation": "horizontal",
+    "modules": ["backlight", "custom/nightlight", "custom/audio", "battery", "custom/tlp"]
+  },
+
+  "hyprland/workspaces": {
+    "all-outputs": true,
+    "disable-scroll": true,
+    "sort-by-number": true,
+    "on-click": "activate",
+    "format": "{icon}",
+    "format-icons": {
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4",
+      "5": "5",
+      "6": "6",
+      "7": "7",
+      "8": "8",
+      "9": "9",
+      "10": "10"
+    }
+  },
+
+  "hyprland/window": {
+    "format": "󰜵  {}",
+    "max-length": 50,
+    "separate-outputs": true
+  },
+
+  "custom/media": {
+    "exec": "~/.config/waybar/scripts/media.sh",
+    "return-type": "json",
+    "restart-interval": 2,
+    "exec-on-event": false,
+    "on-click": "~/.config/waybar/scripts/media.sh play-pause",
+    "on-click-right": "~/.config/waybar/scripts/media.sh next",
+    "on-click-middle": "~/.config/waybar/scripts/media.sh previous"
+  },
+
+  "cpu": {
+    "interval": 15,
+    "format": "  {usage}%"
+  },
+
+  "custom/temps": {
+    "exec": "~/.config/waybar/scripts/temps.sh",
+    "return-type": "json",
+    "interval": 15
+  },
+
+  "custom/memory": {
+    "exec": "~/.config/waybar/scripts/memory.sh",
+    "return-type": "json",
+    "interval": 15
+  },
+
+  "network#wifi": {
+    "interface": "wlp*",
+    "interval": 5,
+    "format-wifi": "󰤨  {essid}",
+    "format-linked": "󰤩  No IP",
+    "format-disconnected": "󰤯  Disconnected",
+    "format-disabled": "󰤭  Wi-Fi off",
+    "tooltip-format-wifi": "SSID: {essid}\nSignal: {signalStrength}% ({signaldBm} dBm)\nFrequency: {frequency} GHz\n\nInterface: {ifname}\nIP: {ipaddr}/{cidr}\nGateway: {gwaddr}\n\nDown: {bandwidthDownBytes}\nUp: {bandwidthUpBytes}",
+    "tooltip-format-linked": "Wi-Fi: connected to {essid}, waiting for an IP address",
+    "tooltip-format-disconnected": "Wi-Fi: not connected",
+    "tooltip-format-disabled": "Wi-Fi is off",
+    "on-click": "~/.config/rofi/wifi-menu.sh"
+  },
+
+  "network#eth": {
+    "interface": "enp*",
+    "interval": 5,
+    "format-ethernet": "󰈀  Ethernet",
+    "format-linked": "󰌚  Ethernet (no IP)",
+    "format-disconnected": "",
+    "tooltip-format-ethernet": "Interface: {ifname}\nIP: {ipaddr}/{cidr}\nGateway: {gwaddr}\n\nDown: {bandwidthDownBytes}\nUp: {bandwidthUpBytes}",
+    "tooltip-format-linked": "Cable connected on {ifname}, but no IP address"
+  },
+
+  "custom/vpn": {
+    "exec": "~/.config/waybar/scripts/vpn.sh",
+    "return-type": "json",
+    "interval": 5,
+    "signal": 11,
+    "exec-on-event": false,
+    "on-click": "~/.config/rofi/vpn-menu.sh"
+  },
+
+  "custom/firewall": {
+    "exec": "~/.config/waybar/scripts/firewall.sh",
+    "return-type": "json",
+    "interval": 30,
+    "signal": 10,
+    "exec-on-event": false,
+    "on-click": "~/.config/rofi/firewall-menu.sh"
+  },
+
+  "backlight": {
+    "device": "intel_backlight",
+    "format": "{icon}  {percent}%",
+    "format-icons": ["󰃚", "󰃝", "󰃞", "󰃟", "󰃠"],
+    "tooltip-format": "Brightness: {percent}%",
+    "on-click": "~/.config/waybar/scripts/nightlight.sh toggle",
+    "on-scroll-up": "brightnessctl --exponent=4 --min-value=970 set 5%+",
+    "on-scroll-down": "brightnessctl --exponent=4 --min-value=970 set 5%-"
+  },
+
+  "custom/nightlight": {
+    "exec": "~/.config/waybar/scripts/nightlight.sh",
+    "return-type": "json",
+    "interval": "once",
+    "signal": 9,
+    "exec-on-event": false,
+    "on-click": "~/.config/waybar/scripts/nightlight.sh toggle"
+  },
+
+  "custom/audio": {
+    "exec": "~/.config/waybar/scripts/audio.sh",
+    "return-type": "json",
+    "restart-interval": 2,
+    "exec-on-event": false,
+    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+    "on-scroll-up": "wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+",
+    "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+  },
+
+  "battery": {
+    "states": {
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "{icon} {capacity}%",
+    "format-charging": "󰂄 {capacity}%",
+    "format-plugged": "󱞜 {capacity}%",
+    "format-icons": ["󰁺", "󰁼", "󰁾", "󰂀", "󰁹"],
+    "tooltip-format": "{timeTo}\nCapacity: {capacity}%",
+    "tooltip-format-plugged": "Not charging (TLP limit)\nCapacity: {capacity}%",
+    "tooltip-format-full": "Fully charged\nCapacity: {capacity}%"
+  },
+
+  "custom/tlp": {
+    "exec": "~/.config/waybar/scripts/tlp-mode.sh",
+    "return-type": "json",
+    "interval": 30,
+    "signal": 8,
+    "exec-on-event": false,
+    "on-click": "~/.config/rofi/tlp-menu.sh"
+  },
+
+  "tray": {
+    "icon-size": 18,
+    "spacing": 10,
+    "show-passive-items": true
+  },
+
+  "custom/weather": {
+    "exec": "~/.config/waybar/scripts/weather.sh",
+    "return-type": "json",
+    "interval": 900,
+    "signal": 12,
+    "exec-on-event": false,
+    "on-click": "~/.config/waybar/scripts/weather.sh --open",
+    "on-click-right": "pkill -RTMIN+12 waybar"
+  },
+
+  "clock": {
+    "interval": 60,
+    "format": "{:%H:%M}",
+    "format-alt": "{:%a. %d %b.}",
+    "tooltip-format": "<tt>{calendar}</tt>",
+    "calendar": {
+      "mode": "month",
+      "format": {
+        "today": "<span color='#f2f2f4'><b><u>{}</u></b></span>",
+        "weekends": "<span color='#6e6e70'>{}</span>"
+      }
+    }
+  }
+}

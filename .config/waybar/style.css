@@ -1,0 +1,228 @@
+@import url("colors.css");
+
+/* Reset: remove GTK theme borders, shadows and minimum heights */
+* {
+  border: none;
+  border-radius: 0;
+  min-height: 0;
+  box-shadow: none;
+  text-shadow: none;
+  font-family: "IosevkaTerm Nerd Font";
+  font-size: 14px;
+  font-weight: bold;
+}
+
+window#waybar {
+  background-color: @bg;
+  color: @fg;
+}
+
+tooltip {
+  background: @bg-alt;
+  border: 2px solid @gray;
+  border-radius: 8px;
+  padding: 6px 10px;
+}
+
+tooltip label {
+  color: @fg;
+}
+
+/* Pills: shared style for each block */
+#custom-media,
+#hardware,
+#net,
+#controls,
+#tray,
+#custom-weather,
+#clock {
+  margin: 6px 4px;
+  padding: 0 12px;
+  border-radius: 10px;
+  background: @bg-alt;
+  color: @fg-alt;
+}
+
+/* The clock is the last block of the bar and stands out */
+#clock {
+  margin-right: 8px;
+  color: @fg;
+}
+
+/* Modules inside groups: no background, just spacing */
+#cpu,
+#custom-temps,
+#custom-memory,
+#network,
+#custom-vpn,
+#custom-firewall,
+#backlight,
+#custom-nightlight,
+#custom-audio,
+#battery,
+#custom-tlp {
+  padding: 0 6px;
+  background: transparent;
+}
+
+/* Tray: hide the pill when there are no icons */
+#tray.empty {
+  margin: 0;
+  padding: 0;
+  background: transparent;
+}
+
+#tray > .needs-attention {
+  background: @bg-sel;
+  border-radius: 6px;
+}
+
+/* Context menus opened from tray icons */
+menu {
+  background: @bg-alt;
+  border: 2px solid @gray;
+  border-radius: 8px;
+  padding: 4px;
+}
+
+menu menuitem {
+  padding: 6px 10px;
+  border-radius: 6px;
+  color: @fg-alt;
+}
+
+menu menuitem:hover {
+  background: @bg-sel;
+  color: @fg;
+}
+
+menu menuitem:disabled {
+  color: @muted;
+}
+
+menu separator {
+  min-height: 1px;
+  margin: 4px 6px;
+  background: @gray;
+}
+
+/* Workspaces. Each button is a pill with the same 4px side margin as the
+   others, so the container only adds what is missing at the screen edge.
+   min-width overrides the minimum button width some GTK themes set */
+#workspaces {
+  margin: 6px 0 6px 4px;
+}
+
+#workspaces button {
+  min-width: 0;
+  margin: 0 4px;
+  padding: 0 8px;
+  border-radius: 10px;
+  background: @bg-alt;
+  color: @fg-alt;
+}
+
+#workspaces button:hover {
+  background: @bg-sel;
+}
+
+#workspaces button.active {
+  background: @bg-sel;
+  color: @fg;
+}
+
+#workspaces button.urgent {
+  color: @red;
+}
+
+/* Window title */
+#window {
+  margin: 6px 4px;
+  padding: 0 8px;
+  color: @fg-alt;
+}
+
+window#waybar.empty #window {
+  color: transparent;
+}
+
+/* States */
+#custom-media.paused {
+  color: @muted;
+}
+
+#custom-temps.warning,
+#custom-memory.warning {
+  color: @yellow;
+}
+
+#custom-temps.critical,
+#custom-memory.critical {
+  color: @red;
+}
+
+#custom-temps.unknown {
+  color: @muted;
+}
+
+#battery.warning:not(.charging) {
+  color: @yellow;
+}
+
+#battery.critical:not(.charging) {
+  color: @red;
+  animation: blink 0.5s linear infinite alternate;
+}
+
+#custom-audio.muted {
+  color: @muted;
+}
+
+#network.disconnected,
+#network.disabled,
+#network.linked {
+  color: @muted;
+}
+
+#custom-vpn.on {
+  color: @green;
+}
+
+#custom-vpn.connecting {
+  color: @yellow;
+}
+
+#custom-vpn.off {
+  color: @muted;
+}
+
+#custom-firewall.off {
+  color: @red;
+}
+
+#custom-nightlight.on {
+  color: @yellow;
+}
+
+#custom-tlp.performance {
+  color: @yellow;
+}
+
+#custom-tlp.power-saver {
+  color: @green;
+}
+
+#custom-tlp.unknown {
+  color: @muted;
+}
+
+#custom-weather.stale,
+#custom-weather.unavailable {
+  color: @muted;
+}
+
+@keyframes blink {
+  to {
+    color: @fg;
+  }
+}
