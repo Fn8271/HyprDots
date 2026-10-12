@@ -1,0 +1,9 @@
+@import "shared.rasi"
+
+configuration {
+    show-icons: false;
+}
+
+window {
+    width: 320px;
+}
